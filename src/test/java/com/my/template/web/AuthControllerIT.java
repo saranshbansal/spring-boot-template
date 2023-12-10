@@ -5,8 +5,8 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.testng.annotations.Test;
 
-import static javax.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
-import static javax.servlet.http.HttpServletResponse.SC_OK;
+import static jakarta.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
+import static jakarta.servlet.http.HttpServletResponse.SC_OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -46,8 +46,8 @@ public class AuthControllerIT extends AbstractControllerIT {
 	public void getUserDetailsFromToken_returnsErrorResponse_whenInvalidToken() throws Exception {
 		// when
 		mockMvc.perform(get(PARSE_TOKEN_URL)
-								.contentType(APPLICATION_JSON)
-								.header("Iam-Claimsetjwt", "invalid_token")
+						.contentType(APPLICATION_JSON)
+						.header("Iam-Claimsetjwt", "invalid_token")
 				)
 				.andDo(MockMvcResultHandlers.print())
 				.andExpect(status().is(SC_BAD_REQUEST))
