@@ -1,0 +1,28 @@
+{
+  "type": "java [archetype]",
+  "sub_types": [
+    "integration"
+  ],
+  "builds": [
+    {
+      "build_name": "deploy",
+      "parameters": {
+        "env.JAVA_HOME": "%env.JAVA_8_HOME%",
+        "extra.maven.parameters": "-Pdist-classifier"
+      }
+    },
+    {
+      "build_name": "release",
+      "parameters": {
+        "env.JAVA_HOME": "%env.JAVA_8_HOME%",
+        "extra.maven.parameters": "-Pdist-classifier"
+      }
+    },
+    {
+      "build_name": "integration",
+      "parameters": {
+        "env.JAVA_HOME": "%env.JAVA_8_HOME%"
+      }
+    }
+  ]
+}
