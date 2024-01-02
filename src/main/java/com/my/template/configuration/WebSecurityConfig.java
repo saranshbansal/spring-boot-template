@@ -18,8 +18,8 @@ import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
 import static com.my.template.util.MessageBuilder.buildMessage;
 import static com.my.template.util.MessageSource.ERROR_WEB_SECURITY_FILTER;
-import static org.springframework.security.config.Customizer.withDefaults;
 import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
+import static org.springframework.security.config.Customizer.withDefaults;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 /**
@@ -65,11 +65,11 @@ public class WebSecurityConfig {
 	 * to allow local testing and h2 console.
 	 *
 	 * @param mvc request matcher configs
-	 * @param http security object
+	 * @param httpSecurity security object
 	 * @return instance of {@link SecurityFilterChain}
 	 */
 	@Bean
-	public SecurityFilterChain filterChain(HttpSecurity httpSecurity) {
+	public SecurityFilterChain filterChain(MvcRequestMatcher.Builder mvc, HttpSecurity httpSecurity) {
 		try {
 			httpSecurity
 					.csrf(AbstractHttpConfigurer::disable) // disables csrf
