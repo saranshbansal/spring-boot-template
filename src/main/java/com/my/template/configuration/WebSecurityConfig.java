@@ -13,10 +13,13 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
+import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
 import static com.my.template.util.MessageBuilder.buildMessage;
 import static com.my.template.util.MessageSource.ERROR_WEB_SECURITY_FILTER;
 import static org.springframework.security.config.Customizer.withDefaults;
+import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 /**
@@ -46,10 +49,23 @@ public class WebSecurityConfig {
 	};
 
 	/**
+	 * Explicit request matcher bean to mitigate vulnerability:
+	 * https://github.com/jzheaux/cve-2023-34035-mitigations
+	 *
+	 * @param introspector handler mapping config class
+	 * @return instance of {@link MvcRequestMatcher.Builder}
+	 */
+	@Bean
+	public MvcRequestMatcher.Builder mvc(HandlerMappingIntrospector introspector) {
+		return new MvcRequestMatcher.Builder(introspector);
+	}
+
+	/**
 	 * Configures access to application with reduced requirements to security
 	 * to allow local testing and h2 console.
 	 *
-	 * @param httpSecurity security object
+	 * @param mvc request matcher configs
+	 * @param http security object
 	 * @return instance of {@link SecurityFilterChain}
 	 */
 	@Bean
@@ -61,8 +77,9 @@ public class WebSecurityConfig {
 					.sessionManagement(session -> session.sessionCreationPolicy(STATELESS)) // set session as stateless
 					.httpBasic(AbstractHttpConfigurer::disable) // disables pop-up
 					.authorizeHttpRequests(auth -> auth
-							.requestMatchers(AUTH_WHITELIST).permitAll()
-							.anyRequest().permitAll()
+							.requestMatchers(getMvcRequestMatchers(mvc)).permitAll()
+							.requestMatchers(toH2Console()).permitAll()
+							.anyRequest().authenticated()
 					)
 					.formLogin(withDefaults());
 
@@ -96,5 +113,19 @@ public class WebSecurityConfig {
 	@Bean
 	BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
+	}
+
+	/**
+	 * Construct a list of request matchers for whitelisted request patterns
+	 *
+	 * @param mvc explicit mvc request matcher helper
+	 * @return list of {@link MvcRequestMatcher} per whitelisted request pattern
+	 */
+	private MvcRequestMatcher[] getMvcRequestMatchers(MvcRequestMatcher.Builder mvc) {
+		MvcRequestMatcher[] requestMatchers = new MvcRequestMatcher[AUTH_WHITELIST.length];
+		for (int i = 0; i < AUTH_WHITELIST.length; i++) {
+			requestMatchers[i] = mvc.pattern(AUTH_WHITELIST[i]);
+		}
+		return requestMatchers;
 	}
 }
