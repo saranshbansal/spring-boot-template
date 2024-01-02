@@ -30,18 +30,19 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 public class WebSecurityConfig {
 
 	private static final String[] AUTH_WHITELIST = {
-			"/*/swagger-ui.html",
-			"/*/swagger-ui/**",
-			"/*/api-docs**",
+			"/swagger-ui.html/**",
+			"/swagger-ui/**",
+			"/api-docs**",
 			"/csrf",
 			"/*/webjars**",
-			"/*/*.js",
-			"/*/*.css",
-			"/*/*.png",
-			"/*/*.woff",
-			"/*/*.woff2",
+			"/*.js",
+			"/*.css",
+			"/*.png",
+			"/*.woff",
+			"/*.woff2",
 			// actuator endpoint
-			"/*/actuator/**"
+			"/actuator/**",
+			"h2-console/**"
 	};
 
 	/**
