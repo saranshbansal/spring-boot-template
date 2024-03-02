@@ -32,6 +32,6 @@ public class AIController {
 	 */
 	@GetMapping(AI_PROMPT)
 	public Map<String, String> generate(@RequestParam(value = "message", defaultValue = "Tell me a joke") String message) {
-		return Map.of("generation", chatClient.generate(message));
+		return Map.of("generation", chatClient.call(message));
 	}
 }
