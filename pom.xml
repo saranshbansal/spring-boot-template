@@ -23,7 +23,6 @@
 		<testng.version>7.10.2</testng.version>
 		<mockito.version>5.2.0</mockito.version>
 		<open-api.version>1.8.0</open-api.version>
-		<spring-ai.version>1.0.0-M2</spring-ai.version>
 		<maven-clean-plugin.version>3.4.0</maven-clean-plugin.version>
 		<maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
 	</properties>
@@ -68,12 +67,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.ai</groupId>
-			<artifactId>spring-ai-openai-spring-boot-starter</artifactId>
-			<version>${spring-ai.version}</version>
 		</dependency>
 
 		<!-- Model mapper -->
@@ -141,55 +134,7 @@
 			<version>${mockito.version}</version>
 			<scope>test</scope>
 		</dependency>
-
-		<!--Spring AI: https://docs.spring.io/spring-ai/reference/getting-started.html-->
-		<dependency>
-			<groupId>org.springframework.ai</groupId>
-			<artifactId>spring-ai-bom</artifactId>
-			<version>${spring-ai.version}</version>
-			<type>pom</type>
-			<scope>import</scope>
-		</dependency>
 	</dependencies>
-
-	<!-- Repositories -->
-	<repositories>
-		<repository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/milestone</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>spring-snapshots</id>
-			<name>Spring Snapshots</name>
-			<url>https://repo.spring.io/snapshot</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-		</repository>
-	</repositories>
-
-	<pluginRepositories>
-		<pluginRepository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/milestone</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</pluginRepository>
-		<pluginRepository>
-			<id>spring-snapshots</id>
-			<name>Spring Snapshots</name>
-			<url>https://repo.spring.io/snapshot</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-		</pluginRepository>
-	</pluginRepositories>
 
 	<!-- build plugins -->
 	<build>
