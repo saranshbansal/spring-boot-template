@@ -6,25 +6,26 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.1</version>
+		<version>3.3.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
 	<!-- Target artefact details -->
 	<groupId>com.my</groupId>
 	<artifactId>learn-spring-boot</artifactId>
-	<version>0.0.7-SNAPSHOT</version>
+	<version>0.0.0-SNAPSHOT</version>
 
 	<properties>
 		<java.version>17</java.version>
 
 		<maven.javadoc.failOnError>false</maven.javadoc.failOnError>
-		<modelmapper.version>3.2.0</modelmapper.version>
-		<testng.version>7.8.0</testng.version>
+		<modelmapper.version>3.2.1</modelmapper.version>
+		<testng.version>7.10.2</testng.version>
 		<mockito.version>5.2.0</mockito.version>
-		<open-api.version>1.7.0</open-api.version>
-		<maven-clean-plugin.version>3.3.2</maven-clean-plugin.version>
-		<maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
+		<open-api.version>1.8.0</open-api.version>
+		<spring-ai.version>1.0.0-M2</spring-ai.version>
+		<maven-clean-plugin.version>3.4.0</maven-clean-plugin.version>
+		<maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
 	</properties>
 
 	<dependencies>
@@ -72,7 +73,7 @@
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
 			<artifactId>spring-ai-openai-spring-boot-starter</artifactId>
-			<version>0.8.0-SNAPSHOT</version>
+			<version>${spring-ai.version}</version>
 		</dependency>
 
 		<!-- Model mapper -->
@@ -145,7 +146,7 @@
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
 			<artifactId>spring-ai-bom</artifactId>
-			<version>0.8.0</version>
+			<version>${spring-ai.version}</version>
 			<type>pom</type>
 			<scope>import</scope>
 		</dependency>

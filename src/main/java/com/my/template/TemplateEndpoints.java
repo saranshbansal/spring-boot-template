@@ -16,7 +16,6 @@ public final class TemplateEndpoints {
 	public static final String AUTH_CONTROLLER_PATH = BASE_PATH + VERSION + "/auth";
 	public static final String AI_CONTROLLER_PATH = BASE_PATH + VERSION + "/ai";
 
-	public static final String GET_USER_DETAILS_FROM_IAM = "/login";
 	public static final String PARSE_TOKEN = "/util/parse-token";
 	public static final String AI_PROMPT = "/prompt";
 }

@@ -44,14 +44,14 @@ public class AuthService {
 			});
 
 			return PrincipalUserDto.builder()
-						   .isActive((Boolean) map.get(ACTIVE_KEY.getValue()))
-						   .domain(map.get(DOMAIN_KEY.getValue()).toString())
-						   .userName(map.get(USERNAME_KEY.getValue()).toString())
-						   .firstName(map.get(FIRSTNAME_KEY.getValue()).toString())
-						   .lastName(map.get(LASTNAME_KEY.getValue()).toString())
-						   .email(map.get(EMAIL_KEY.getValue()).toString())
-						   .memberOf(map.get(MEMBEROF_KEY.getValue()).toString())
-						   .build();
+					.isActive((Boolean) map.get(ACTIVE_KEY.getValue()))
+					.domain(map.get(DOMAIN_KEY.getValue()).toString())
+					.userName(map.get(USERNAME_KEY.getValue()).toString())
+					.firstName(map.get(FIRSTNAME_KEY.getValue()).toString())
+					.lastName(map.get(LASTNAME_KEY.getValue()).toString())
+					.email(map.get(EMAIL_KEY.getValue()).toString())
+					.memberOf(map.get(MEMBEROF_KEY.getValue()).toString())
+					.build();
 		} catch (Exception e) {
 			throw new GenericRuntimeException(BAD_REQUEST, ERROR_INVALID_TYK_TOKEN_PROVIDED.getText(token));
 		}
