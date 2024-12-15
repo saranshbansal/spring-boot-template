@@ -71,19 +71,6 @@ in application database.
 Application uses Spring security by annotating methods with `@RolesAllowed` annotation with necessary groups. All API endpoints
 (except actuator endpoints) are protected.
 
-
-## Getting started
-
-To run application locally, IDEA should be configured with a new application configuration
-
-![IDE Run config](images/ide-run-config.PNG)
-
-To run application locally just use IDEA run/debug controls
-
-![IDE Run config](images/ide-run-debug.PNG)
-
-For PCF deploy and run see `PCF Deployment` topic below
-
 ## Environments
 
 The application can use the following types of environments
